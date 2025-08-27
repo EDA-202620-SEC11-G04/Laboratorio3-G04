@@ -123,7 +123,7 @@ def main():
 
         elif int(inputs[0]) == 3:
             authorname = input("Nombre del autor a buscar: ")
-            author, tiempo = logic.get_books_by_author(control, authorname)
+            author = logic.get_books_by_author(control, authorname)
             print_author_data(author)
             print('**Tiempo de carga** ' + str(tiempo) + ' segundos')
 
