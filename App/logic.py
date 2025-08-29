@@ -29,7 +29,7 @@ import os
 import time
 
 # TODO Importar la librería para el manejo de listas
-
+from DataStructures.List import array_list as lt
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
 """
@@ -99,7 +99,11 @@ def load_tags(catalog):
     :return: El número de tags cargados
     """
     # TODO Implementar la carga de los tags
-    pass
+    booksfile = data_dir + 'GoodReads/books-medium.csv'
+    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
+    for tags in input_file:
+        add_book_tag(catalog,tags)
+    return book_tag_size(catalog)
 
 
 def load_books_tags(catalog):
