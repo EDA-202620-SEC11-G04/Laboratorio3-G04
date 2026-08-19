@@ -5,6 +5,12 @@ def new_list():
             }
     return newlist
 
+<<<<<<< HEAD
+def add_first(my_list, element):
+    my_list['elements'].insert(0, element)
+    my_list['size'] += 1
+    return my_list
+=======
 def get_element(my_list, index):
     
     return my_list['elements'][index]
@@ -22,3 +28,4 @@ def is_present(my_list, element, cmp_function):
         if keyexist:
             return keypos
     return -1
+>>>>>>> 17c9aa3fab6e53abd35c9e68a3f26f6054e0f207
