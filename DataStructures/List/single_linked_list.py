@@ -5,13 +5,12 @@ def new_list():
         "size": 0,
             }
     return newlist  
-<<<<<<< HEAD
 
 def add_first(my_list, element):
     my_list['elements'].insert(0, element)
     my_list['size'] += 1
-    return array_list
-=======
+    
+    return add_first 
 def get_element(my_list,pos):
     searchpos=0
     node=my_list["first"]
@@ -30,8 +29,3 @@ def is_present(my_list, element, cmp_function):
             temp=temp["next"]
             count+=1
             
-    if not is in array:
-        count= -1
-    return count
-    
->>>>>>> 17c9aa3fab6e53abd35c9e68a3f26f6054e0f207
