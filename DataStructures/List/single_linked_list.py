@@ -29,3 +29,4 @@ def is_present(my_list, element, cmp_function):
             temp=temp["next"]
             count+=1
             
+
