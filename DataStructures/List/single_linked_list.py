@@ -23,7 +23,7 @@ def is_present(my_list, element, cmp_function):
             temp=temp["next"]
             count+=1
             
-    if not is in array:
+    if not is_in_array:
         count= -1
     return count
     
