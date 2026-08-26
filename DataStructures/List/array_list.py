@@ -39,4 +39,15 @@ def first_element(my_list):
     else:
         return None
     
-    
+def get_element(my_list, index):
+    if index < 0 or index >= my_list['size']:
+        return None
+    return my_list['elements'][index]
+
+def delete_element(my_list, index):
+    if index < 0 or index >= my_list['size']:
+        return None
+    else:
+        my_list['elements'].pop(index)
+        my_list['size'] -= 1
+        return my_list
