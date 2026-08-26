@@ -103,8 +103,19 @@ def insert_element(my_list, element, pos):
     if pos == tamaño:
        return add_last(my_list, element)
    
-    elemento_anterior = my_list["first"]
-   
+    nodo_anterior = my_list["first"]
+    for i in range(pos-1):
+        nodo_anterior = nodo_anterior["next"]
+        
+    nodo["next"] = nodo_anterior["next"]
+    nodo_anterior["next"] = nodo
+    my_list["size"] += 1
+    
+    if my_list["last"] == nodo_anterior:
+        my_list["last"] = nodo
+        
+    return my_list
+  
 
     
     
