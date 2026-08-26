@@ -1,4 +1,3 @@
-
 def new_list():
     newlist = {
         'elements': [],
@@ -27,7 +26,7 @@ def add_first(my_list, element):
     return my_list
 
 def add_last(my_list, element):
-    my_list('elements').append(element)
+    my_list['elements'].append(element)
     my_list['size'] += 1
     return my_list
     
