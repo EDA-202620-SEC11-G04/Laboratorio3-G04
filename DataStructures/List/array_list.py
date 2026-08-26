@@ -30,10 +30,17 @@ def add_first(my_list, element):
 
 
 def add_last(my_list, element):
-    lista = new_list()
-    lista = add_last(lista, element)
-    
-    return lista
-    
+    my_list['elements'].append(element)
+    my_list['size'] += 1
+    return my_list
+
+def size(my_list):
+    return my_list['size']  
+
+def first_element(my_list):
+    if my_list['size'] > 0:
+        return my_list['elements'][0]
+    else:
+        return None
     
     
