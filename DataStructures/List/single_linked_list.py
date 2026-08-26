@@ -6,6 +6,10 @@ def new_list():
             }
     return newlist  
 
+def new_node(element):
+    node = {"info": element, "next": None}
+    return node
+
 def get_element(my_list,pos):
     searchpos=0
     node=my_list["first"]
@@ -13,6 +17,7 @@ def get_element(my_list,pos):
         node=node["next"]
         searchpos+=1
     return node["info"]
+
 def is_present(my_list, element, cmp_function):
     is_in_array=False
     temp=my_list["first"]
@@ -29,6 +34,79 @@ def is_present(my_list, element, cmp_function):
     return count
 
 def add_first(my_list, element):
-    my_list['elements'].insert(0, element)
-    my_list['size'] += 1
+    node = new_node(element)
+    node["next"] = my_list["first"]  
+    my_list["first"] = node
+    
+    if my_list["size"] == 0:
+        my_list["last"] = node
+        my_list["size"] += 1
+        
     return my_list
+
+def add_last(my_list, element):
+    node = new_node(element)
+    
+    if my_list["size"] == 0:
+        my_list["first"] = node
+        my_list["last"] = node
+    else:
+        my_list["last"]["next"] = node
+        my_list["last"] = node
+        
+    my_list["size"] += 1
+    return my_list
+
+def is_empty(my_list):
+    return True if my_list["size"] == 0 else False
+
+def size(my_list):
+    return my_list["size"]
+
+def first_element(my_list):
+    tamaño = size(my_list)
+    if tamaño > 0:
+        return my_list["first"]["info"]
+    
+def last_element(my_list):
+    tamaño = size(my_list)
+    if tamaño > 0:
+        return my_list["last"]["info"]
+    
+def remove_first(my_list):
+    tamaño = size(my_list)
+    if tamaño > 0:
+        nodo_removido = my_list["first"]
+        my_list["first"] = nodo_removido["next"]
+        my_list["size"] -= 1
+        
+    return nodo_removido["info"]
+
+def remove_last(my_list):
+    tamaño = size(my_list)
+    if tamaño > 0:
+        nodo_removido = my_list["first"]
+        my_list["first"] = nodo_removido["next"]
+        my_list["size"] -= 1
+        
+    return nodo_removido["info"]
+
+def insert_element(my_list, element, pos):
+    nodo = new_node(element)
+    tamaño = size(my_list)
+    if pos not in range(tamaño):
+        return "posición no valida"
+    
+    if pos == 0:
+        return add_first(my_list, element)
+        
+    if pos == tamaño:
+       return add_last(my_list, element)
+   
+    elemento_anterior = my_list["first"]
+   
+
+    
+    
+        
+    
