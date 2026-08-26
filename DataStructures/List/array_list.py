@@ -1,3 +1,6 @@
+from operator import index
+
+
 def new_list():
     newlist = {
         'elements': [],
@@ -39,4 +42,24 @@ def first_element(my_list):
     else:
         return None
     
+def get_element(my_list, index):
+    if index < 0 or index >= my_list['size']:
+        return None
+    return my_list['elements'][index]
+
+def delete_element(my_list, index):
+    if index < 0 or index >= my_list['size']:
+        return None
+    else:
+        my_list['elements'].pop(index)
+        my_list['size'] -= 1
+        return my_list
+
+def insert_element(my_list, index, info):
+    if index < 0 or index > my_list['size']:
+        return None
+    else:
+        my_list['elements'].insert(index, info)
+        my_list['size'] += 1
+        return my_list
     
