@@ -1,3 +1,5 @@
+import list_node as node
+
 def new_list():
     newlist = {
         "first": None,
@@ -5,10 +7,6 @@ def new_list():
         "size": 0,
             }
     return newlist  
-
-def new_node(element):
-    node = {"info": element, "next": None}
-    return node
 
 def get_element(my_list,pos):
     searchpos=0
@@ -34,7 +32,7 @@ def is_present(my_list, element, cmp_function):
     return count
 
 def add_first(my_list, element):
-    node = new_node(element)
+    node = node.new_single_node(element)
     node["next"] = my_list["first"]  
     my_list["first"] = node
     
@@ -45,7 +43,7 @@ def add_first(my_list, element):
     return my_list
 
 def add_last(my_list, element):
-    node = new_node(element)
+    node = node.new_single_node(element)
     
     if my_list["size"] == 0:
         my_list["first"] = node
@@ -92,7 +90,7 @@ def remove_last(my_list):
     return nodo_removido["info"]
 
 def insert_element(my_list, element, pos):
-    nodo = new_node(element)
+    nodo = node.new_single_node(element)
     tamaño = size(my_list)
     if pos not in range(tamaño):
         return "posición no valida"
