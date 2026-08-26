@@ -72,11 +72,10 @@ def load_data(catalog):
     start_time = getTime()
     books, authors = load_books(catalog)
     tags = load_tags(catalog)
-    # TODO Complete la carga de los book_tags
-    # TODO Añada los parámetros de retoro necesarios
+    book_tags = load_books_tags(catalog)
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
-    return books, authors, tiempo_transcurrido
+    return books, authors, tags, book_tags, tiempo_transcurrido
 
 
 
@@ -116,8 +115,11 @@ def load_books_tags(catalog):
 
     :return: El número de book_tags cargados
     """
-    # TODO Implementar la carga de los book_tags
-    pass
+    booktagsfile = data_dir + 'GoodReads/book_tags.csv'
+    input_file = csv.DictReader(open(booktagsfile, encoding='utf-8'))   
+    for book_tag in input_file:
+        add_book_tag(catalog, book_tag)
+    return book_tag_size(catalog)
 
 
 # Funciones de consulta sobre el catálogo
@@ -259,8 +261,7 @@ def author_size(catalog):
 
     :return: El número de autores en el catálogo
     """
-    # TODO Implementar la función de tamaño de autores
-    pass
+    return lt.size(catalog['authors'])
 
 
 def tag_size(catalog):
@@ -271,8 +272,7 @@ def tag_size(catalog):
 
     :return: El número de tags en el catálogo
     """
-    # TODO Implementar la función de tamaño de tags
-    pass
+    return lt.size(catalog['tags'])
 
 
 def book_tag_size(catalog):
@@ -283,8 +283,7 @@ def book_tag_size(catalog):
 
     :return: El número de book_tags en el catálogo
     """
-    # TODO Implementar la función de tamaño de book_tags
-    pass
+    return lt.size(catalog['book_tags'])
 
 
 # Funciones utilizadas para comparar elementos dentro de una lista
