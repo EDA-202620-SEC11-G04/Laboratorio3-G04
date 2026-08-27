@@ -146,7 +146,9 @@ def get_best_book(catalog):
     """
     start_time = getTime()
     best_book = None
-    # TODO Implementar la función del mejor libro por rating
+    for book in catalog['books']['elements']:
+        if best_book is None or compare_ratings(book, best_book):
+            best_book = book
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
     return best_book, tiempo_transcurrido
@@ -163,7 +165,9 @@ def count_books_by_tag(catalog, tag):
     """
     start_time = getTime()
     resultado = 0
-    # TODO Implementar la función de conteo de libros por tag
+    for book_tag in catalog['book_tags']['elements']:
+        if book_tag['tag_id'] == tag:
+            resultado += 1
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
     return resultado, tiempo_transcurrido
