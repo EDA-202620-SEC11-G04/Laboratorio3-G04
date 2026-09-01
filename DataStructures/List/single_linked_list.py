@@ -199,6 +199,24 @@ def exchange(my_list, pos1, pos2):
 
     return my_list
   
+  
+def sub_list(my_list, pos1, pos2):
+    tamaño = size(my_list)
+    lista_nueva = new_list()
+
+    if pos1 < 0 or pos2 >= tamaño or pos1 > pos2:
+        return lista_nueva
+
+    nodo_actual = my_list["first"]
+
+    for i in range(pos1):
+        nodo_actual = nodo_actual["next"]
+
+    for i in range(pos2 - pos1 + 1):
+        add_last(lista_nueva, nodo_actual["info"])
+        nodo_actual = nodo_actual["next"]
+
+    return lista_nueva
 
     
     
