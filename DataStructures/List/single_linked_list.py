@@ -1,4 +1,4 @@
-import list_node as node
+from . import list_node as node
 
 def new_list():
     newlist = {
@@ -9,12 +9,14 @@ def new_list():
     return newlist  
 
 def get_element(my_list,pos):
-    searchpos=0
-    node=my_list["first"]
-    while searchpos<pos:
-        node=node["next"]
-        searchpos+=1
-    return node["info"]
+    if pos < 0 or pos >= my_list["size"]:
+        return None
+    nodo_actual = my_list["first"]
+    
+    for i in range(pos):
+        nodo_actual = nodo_actual["next"]
+        
+    return nodo_actual["info"]
 
 def is_present(my_list, element, cmp_function):
     is_in_array=False
@@ -38,7 +40,8 @@ def add_first(my_list, element):
     
     if my_list["size"] == 0:
         my_list["last"] = node
-        my_list["size"] += 1
+        
+    my_list["size"] += 1
         
     return my_list
 
@@ -56,7 +59,11 @@ def add_last(my_list, element):
     return my_list
 
 def is_empty(my_list):
-    return True if my_list["size"] == 0 else False
+    if my_list["size"] == 0:
+        return True
+    else:
+        return False
+    
 
 def size(my_list):
     return my_list["size"]
@@ -72,28 +79,47 @@ def last_element(my_list):
         return my_list["last"]["info"]
     
 def remove_first(my_list):
-    tamaño = size(my_list)
-    if tamaño > 0:
-        nodo_removido = my_list["first"]
-        my_list["first"] = nodo_removido["next"]
-        my_list["size"] -= 1
+    if is_empty(my_list):  
+        return None
+    
+    nodo_removido = my_list["first"]
+    my_list["first"] = nodo_removido["next"]
+    my_list["size"] -= 1
+    
+    if my_list["size"] == 0:
+        my_list["last"] = None
         
     return nodo_removido["info"]
 
 def remove_last(my_list):
-    tamaño = size(my_list)
-    if tamaño > 0:
-        nodo_removido = my_list["first"]
-        my_list["first"] = nodo_removido["next"]
-        my_list["size"] -= 1
+    if is_empty(my_list):
+        return None
+    
+    if my_list["size"] == 1:
+        elemento = my_list["first"]["info"]
+        my_list["first"] = None
+        my_list["last"] = None
+        my_list["size"] = 0
         
-    return nodo_removido["info"]
+        return elemento
+    
+    nodo_actual = my_list["first"]
+    
+    while nodo_actual["next"] != my_list["last"]:
+        nodo_actual = nodo_actual["next"]
+    
+    elemento = my_list["last"]["info"]
+    nodo_actual["next"] = None
+    my_list["last"] = nodo_actual
+    my_list["size"] -= 1
+        
+    return elemento
 
 def insert_element(my_list, element, pos):
     nodo = node.new_single_node(element)
     tamaño = size(my_list)
-    if pos not in range(tamaño):
-        return "posición no valida"
+    if pos < 0 or pos > tamaño:
+        return None
     
     if pos == 0:
         return add_first(my_list, element)
@@ -102,15 +128,13 @@ def insert_element(my_list, element, pos):
        return add_last(my_list, element)
    
     nodo_anterior = my_list["first"]
-    for i in range(pos-1):
+    
+    for i in range(pos - 1):
         nodo_anterior = nodo_anterior["next"]
         
     nodo["next"] = nodo_anterior["next"]
     nodo_anterior["next"] = nodo
     my_list["size"] += 1
-    
-    if my_list["last"] == nodo_anterior:
-        my_list["last"] = nodo
         
     return my_list
   
